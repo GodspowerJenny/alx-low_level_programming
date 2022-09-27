@@ -23,7 +23,6 @@ unsigned int _strspn(char *s, char *accept)
 		j = 0;
 		while (str2[j] != '\0') /*Declaring WHILE *accept*/
 		{
-
 			if (str2[j] == str1[i]) /*Evaluate condition*/
 			{
 				count++; /*count number*/

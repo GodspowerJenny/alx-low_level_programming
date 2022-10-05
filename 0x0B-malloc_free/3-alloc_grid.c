@@ -1,44 +1,43 @@
 #include "main.h"
-
 /**
- * _strspn - Locates a character in a string
- * @s: This is the main C string to be scanned.
- * @accept: This is the string containing the list of characters to match in s
- * Return: return count
- **/
+ * alloc_grid - allocates a grid, make space and free space
+ * @width: takes in width of grid
+ * @height: height of grid
+ * Return: grid with freed spaces
+ */
 
-unsigned int _strspn(char *s, char *accept)
-
+int **alloc_grid(int width, int height)
 {
-	int i, j;
-	int count = 0;
-	char *str1, *str2;
+/*Declaring variables*/
+int **grid;
+int i, j;
 
-	str1 = s;
-	str2 = accept;
+if (width <= 0 || height <= 0)
+{
+return (NULL);
+}
 
-	i = 0;
-	while (str1[i] != '\0') /*Declaring WHILE *s */
-	{
-		j = 0;
-		while (str2[j] != '\0') /*Declaring WHILE *accept*/
-		{
-			if (str2[j] == str1[i]) /*Evaluate condition*/
-			{
-				count++; /*count number*/
-				break;
-			}
+grid = malloc(sizeof(int *) * height); /*malloc*/
 
-			j++;    /*add j+1*/
-		}
+if (grid == NULL)
+{
+return (NULL);
+}
 
-		if (s[i] != accept[j]) /*If aren't equals*/
-		{
-			break;
-		}
-
-		i++; /*add x+1*/
-	}
-
-	return (count); /*return the value of count*/
+for (i = 0; i < height; i++)
+{
+grid[i] = malloc(sizeof(int) * width);
+if (grid[i] == NULL)
+{
+for (i = i - 1; i >= 0; i--)
+{
+free(grid[i]);
+}
+free(grid);
+return (NULL);
+}
+}
+for (i = 0; j < width; j++)
+grid[i][j] = 0;
+return (grid);
 }
